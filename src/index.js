@@ -8,10 +8,34 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            names: ["sam", "sara", "ben", "jake"]
+            players: [
+                {
+                    name: "gabe",
+                    id: 1
+                },
+                {
+                    name: "Melisa",
+                    id: 2
+                }
+            ]
+            // prevPlayerId: 0
         };
     }
-    handleAddName = newName => {
+
+    handleAddPlayer = name => {
+        // let { prevPlayerId } = this.state;
+        this.setState(prevState => {
+            return {
+                players: [
+                    ...prevState.players,
+                    {
+                        name,
+                        score: 0,
+                        id: (this.prevPlayerId += 1)
+                    }
+                ]
+            };
+        });
         console.log("test");
         // this.setState(state => {
         //     return { names: this.state.names.push(newName) };
@@ -22,10 +46,13 @@ class App extends Component {
     render() {
         return (
             <div className="ui container comments">
-                {this.state.names.map(name => (
-                    <CommentDetail name={name} />
+                {this.state.players.map(player => (
+                    <CommentDetail
+                        name={player.name}
+                        key={player.id.toString()}
+                    />
                 ))}
-                <AddPlayerForm addName={this.handleAddName} />
+                <AddPlayerForm addPlayer={this.handleAddPlayer} />
             </div>
         );
     }
