@@ -36,7 +36,7 @@ class App extends Component {
                 ]
             };
         });
-        console.log("test");
+        console.log("Test");
         // this.setState(state => {
         //     return { names: this.state.names.push(newName) };
         // });

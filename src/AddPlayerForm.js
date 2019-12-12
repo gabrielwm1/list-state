@@ -1,9 +1,13 @@
 import React, { Component } from "react";
-
+import PropTypes from "prop-types";
 class AddPlayerForm extends Component {
+    static propTypes = {
+        addPlayer: PropTypes.func
+    };
     playerInput = React.createRef();
 
     handleSubmit = e => {
+        console.log("test");
         this.props.addName(this.playerInput.current.value);
         e.currentTarget.reset();
     };
